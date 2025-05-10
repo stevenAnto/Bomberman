@@ -12,50 +12,63 @@ public class NewBehaviourScript : MonoBehaviour
     public KeyCode inputDown = KeyCode.S;
     public KeyCode inputRight = KeyCode.D;
     public KeyCode inputLeft = KeyCode.A;
+    public AnimatedSpritRendered spriteRendererUp;
+    public AnimatedSpritRendered spriteRendererDown;
+    public AnimatedSpritRendered spriteRendererLeft;
+    public AnimatedSpritRendered spriteRendererRight;
+    private AnimatedSpritRendered activeSpriteRenderer;
 
     private void Awake()
     {
-
         rigidbody = GetComponent<Rigidbody2D>();
+        // Inicializa con el sprite hacia abajo como activo por defecto
+        activeSpriteRenderer = spriteRendererDown;
     }
 
     void Update()
     {
         // Reset direction at the beginning of each frame
         Vector2 newDirection = Vector2.zero;
+        AnimatedSpritRendered newSpriteRenderer = null;
 
-        // Check each key independently
+        // Check each key independently and determine the appropriate sprite renderer
         if (Input.GetKey(inputUp))
         {
             Debug.Log("arriba");
             newDirection += Vector2.up;
+            newSpriteRenderer = spriteRendererUp;
         }
-        
-        if (Input.GetKey(inputDown))
+        else if (Input.GetKey(inputDown))
         {
             Debug.Log("abajo");
             newDirection += Vector2.down;
+            newSpriteRenderer = spriteRendererDown;
         }
-        
-        if (Input.GetKey(inputLeft))
+        else if (Input.GetKey(inputLeft))
         {
             Debug.Log("Left");
             newDirection += Vector2.left;
+            newSpriteRenderer = spriteRendererLeft;
         }
-        
-        if (Input.GetKey(inputRight))
+        else if (Input.GetKey(inputRight))
         {
             Debug.Log("derecha");
             newDirection += Vector2.right;
+            newSpriteRenderer = spriteRendererRight;
         }
 
         // Normalize to prevent diagonal movement from being faster
         if (newDirection != Vector2.zero)
         {
             newDirection.Normalize();
+            // Solo actualizamos el sprite cuando hay movimiento
+            SetDirection(newDirection, newSpriteRenderer);
         }
-
-        SetDirection(newDirection);
+        else
+        {
+            // Si no hay movimiento, mantenemos el sprite actual pero lo ponemos en idle
+            SetDirection(Vector2.zero, activeSpriteRenderer);
+        }
     }
 
     private void FixedUpdate()
@@ -65,9 +78,32 @@ public class NewBehaviourScript : MonoBehaviour
         rigidbody.MovePosition(position + translation);
     }
 
-    private void SetDirection(Vector2 newDirection)
+    private void SetDirection(Vector2 newDirection, AnimatedSpritRendered spriteRenderer)
     {
         direction = newDirection;
+        
+        // Solo actualizamos los sprites si tenemos un sprite renderer válido
+        if (spriteRenderer != null)
+        {
+            // Desactivamos todos los sprites
+            spriteRendererUp.enabled = false;
+            spriteRendererDown.enabled = false;
+            spriteRendererLeft.enabled = false;
+            spriteRendererRight.enabled = false;
+            
+            // Activamos solo el sprite correspondiente
+            spriteRenderer.enabled = true;
+            
+            // Actualizamos el sprite renderer activo
+            activeSpriteRenderer = spriteRenderer;
+        }
+        
+        // Actualizamos el estado idle del sprite renderer activo
+        if (activeSpriteRenderer != null)
+        {
+            activeSpriteRenderer.idle = direction == Vector2.zero;
+        }
+        
         if (direction != Vector2.zero)
         {
             Debug.Log("Nueva dirección: " + direction);
