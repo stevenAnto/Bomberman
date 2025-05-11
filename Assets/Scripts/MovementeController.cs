@@ -21,6 +21,7 @@ public class MovementController : MonoBehaviour
     public AnimatedSpritRendered spriteRendererDown;
     public AnimatedSpritRendered spriteRendererLeft;
     public AnimatedSpritRendered spriteRendererRight;
+    public AnimatedSpritRendered spriteRendererDeath;
     private AnimatedSpritRendered activeSpriteRenderer;
 
     private void Awake()
@@ -120,5 +121,33 @@ public class MovementController : MonoBehaviour
     public void IncreaseSpeed()
     {
         speed = Mathf.Min(10, speed + 1);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
+        {
+            DeathSequence();
+        }
+    }
+
+    private void DeathSequence()
+    {
+        enabled = false;
+        GetComponent<BomboController>().enabled = false;
+
+        spriteRendererUp.enabled = false;
+        spriteRendererDown.enabled = false;
+        spriteRendererLeft.enabled = false;
+        spriteRendererRight.enabled = false;
+        spriteRendererDeath.enabled = true;
+
+        Invoke(nameof(OnDeathSequenceEnded), 1.25f);
+    }
+
+    private void OnDeathSequenceEnded()
+    {
+        gameObject.SetActive(false);
+        //* GameManager.Instance.CheckWinState();
     }
 }
