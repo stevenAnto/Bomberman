@@ -104,6 +104,17 @@ public class BomboController : MonoBehaviour
         }
     }
 
+    public void AddExtraBomb()
+    {
+        bombAmount     = Mathf.Min(10, bombAmount + 1);
+        bombsRemaining = Mathf.Min(10, bombsRemaining + 1);
+    }
+
+    public void IncreaseExplosionRadius()
+    {
+        explosionRadius = Mathf.Min(10, explosionRadius + 1);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

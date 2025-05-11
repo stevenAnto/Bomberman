@@ -116,4 +116,9 @@ public class MovementController : MonoBehaviour
             //* Debug.Log("Nueva dirección: " + direction);
         }
     }
+
+    public void IncreaseSpeed()
+    {
+        speed = Mathf.Min(10, speed + 1);
+    }
 }
