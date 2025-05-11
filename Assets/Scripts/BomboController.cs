@@ -18,6 +18,10 @@ public class BomboController : MonoBehaviour
     public float explosionDuration = 1f;
     public int explosionRadius = 1;
 
+    [Header("Destructible")]
+    public Tilemap destructibleTiles;
+    public GameObject destructibleBlockPrefab;
+
     private void OnEnable()
     {
         bombsRemaining = bombAmount;
@@ -76,7 +80,7 @@ public class BomboController : MonoBehaviour
 
         if (Physics2D.OverlapBox(position, Vector2.one / 2f, 0f, explosionLayerMask))
         {
-            //* ClearDestructible(position);
+            ClearDestructible(position);
             return;
         }
 
@@ -86,6 +90,18 @@ public class BomboController : MonoBehaviour
         explosion.DestroyAfter(explosionDuration);
 
         Explode(position, direction, length - 1);
+    }
+
+    private void ClearDestructible(Vector2 position)
+    {
+        Vector3Int cell = destructibleTiles.WorldToCell(position);
+        TileBase tile = destructibleTiles.GetTile(cell);
+
+        if (tile != null)
+        {
+            Instantiate(destructibleBlockPrefab, position, Quaternion.identity);
+            destructibleTiles.SetTile(cell, null);
+        }
     }
 
     // Start is called before the first frame update
