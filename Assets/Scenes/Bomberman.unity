@@ -787,15 +787,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e17e8e64cbd9befea80d52dc6866c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputKey: 304
-  bombPrefab: {fileID: 1218447650}
+  inputKey: 32
+  bombPrefab: {fileID: 7392538106316855837, guid: 1897aa9c381077be6a2c1a9e84b8ada4, type: 3}
   bombFuseTime: 3
-  bombAmount: 1
---- !u!1 &1218447650 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7392538106316855837, guid: 1897aa9c381077be6a2c1a9e84b8ada4, type: 3}
-  m_PrefabInstance: {fileID: 6148024109953755083}
-  m_PrefabAsset: {fileID: 0}
+  bombAmount: 5
 --- !u!1 &1741761776
 GameObject:
   m_ObjectHideFlags: 0

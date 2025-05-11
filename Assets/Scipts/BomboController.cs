@@ -5,11 +5,17 @@ using UnityEngine.Tilemaps;
 
 public class BomboController : MonoBehaviour
 {
-    public KeyCode inputKey = KeyCode.LeftShift;
+    [Header("Bomb")]
+    public KeyCode inputKey = KeyCode.Space;
     public GameObject bombPrefab;
     public float bombFuseTime = 3f;
     public int bombAmount = 1;
     private int bombsRemaining;
+
+    [Header("Explosion")]
+    public Explosion explosionPrefab;
+    public float explotionDuration = 1f;
+    public int explotionRadius = 1;
 
     private void OnEnable()
     {
@@ -28,7 +34,7 @@ public class BomboController : MonoBehaviour
 
     private IEnumerator PlaceBomb()
     {
-        //Obtencíón de la posición del jugador en los ejes x,y
+        //Obtencï¿½ï¿½n de la posiciï¿½n del jugador en los ejes x,y
         Vector2 position = transform.position;
         position.x = Mathf.Round(position.x);
         position.y = Mathf.Round(position.y);
@@ -39,14 +45,18 @@ public class BomboController : MonoBehaviour
 
         //Esperar unos segundos a que la bomba estalle
         yield return new WaitForSeconds(bombFuseTime);
+        position = bomb.transform.position;
+        position.x = Mathf.Round(position.x);
+        position.y = Mathf.Round(position.y);
+
+        Explosion explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
+        Debug.Log("Explosion instanciada en: " + position);
+
+        explosion.SetActiveRenderer(explosion.start);
+        explosion.DestroyAfter(explotionDuration);
+
         Destroy(bomb);
+        bombsRemaining++;
 
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 }
