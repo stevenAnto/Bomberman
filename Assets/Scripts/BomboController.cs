@@ -115,9 +115,11 @@ public class BomboController : MonoBehaviour
         explosionRadius = Mathf.Min(10, explosionRadius + 1);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnTriggerExit2D(Collider2D other)
     {
-        
+        if (other.gameObject.layer == LayerMask.NameToLayer("Bomb"))
+        {
+            other.isTrigger = false;
+        }
     }
 }
