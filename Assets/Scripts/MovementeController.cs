@@ -24,12 +24,16 @@ public class MovementController : MonoBehaviour
     public AnimatedSpritRendered spriteRendererDeath;
     private AnimatedSpritRendered activeSpriteRenderer;
 
+    AudioManager audioManager;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
         
         // Inicializa con el sprite hacia abajo como activo por defecto
         activeSpriteRenderer = spriteRendererDown;
+
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -141,6 +145,8 @@ public class MovementController : MonoBehaviour
         spriteRendererLeft.enabled = false;
         spriteRendererRight.enabled = false;
         spriteRendererDeath.enabled = true;
+
+        audioManager.PlaySFX(audioManager.death);
 
         Invoke(nameof(OnDeathSequenceEnded), 1.25f);
     }

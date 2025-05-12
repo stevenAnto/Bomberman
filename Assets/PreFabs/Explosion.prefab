@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2871412462273096845}
   - component: {fileID: 3925808115327821136}
+  - component: {fileID: 53474665737650711}
   m_Layer: 8
   m_Name: Explosion
   m_TagString: Untagged
@@ -80,6 +81,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.25}
   m_EdgeRadius: 0
+--- !u!114 &53474665737650711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809565586666384629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b70f8f43bd7a9274485cfef83db3789f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: {fileID: 3064402431573307649}
+  middle: {fileID: 1406699715982874707}
+  end: {fileID: 6689040600748822077}
 --- !u!1 &2911890953609167370
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +169,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -1305236715, guid: fd3ca509e45e2ca5291fe5bbf91cc6f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -263,7 +279,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -1660714098, guid: 69fae69c06bcbc48a8c6158c62c28d12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -373,7 +389,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -713372246, guid: 32ab7a9dcf68566e6a25ee397c918c47, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
