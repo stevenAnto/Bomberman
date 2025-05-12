@@ -36,7 +36,6 @@ public class BomboController : MonoBehaviour
             StartCoroutine(PlaceBomb());
         }
     }
-
     private IEnumerator PlaceBomb()
     {
         // Obtencíón de la posición del jugador en los ejes x,y

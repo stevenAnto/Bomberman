@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Explosion : MonoBehaviour
+public class Explosion:MonoBehaviour
 {
     public AnimatedSpritRendered start;
     public AnimatedSpritRendered middle;
