@@ -22,7 +22,7 @@ public class MovementController : MonoBehaviour
     public AnimatedSpritRendered spriteRendererLeft;
     public AnimatedSpritRendered spriteRendererRight;
     public AnimatedSpritRendered spriteRendererDeath;
-    private AnimatedSpritRendered activeSpriteRenderer;
+    public AnimatedSpritRendered activeSpriteRenderer;
 
     AudioManager audioManager;
 
@@ -31,7 +31,7 @@ public class MovementController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         
         // Inicializa con el sprite hacia abajo como activo por defecto
-        activeSpriteRenderer = spriteRendererDown;
+        //* activeSpriteRenderer = spriteRendererDown;
 
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
