@@ -90,9 +90,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1809565586666384629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b70f8f43bd7a9274485cfef83db3789f, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Script: {fileID: 11500000, guid: 44ca63cad0ba1c110977fc8d8f6d61ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   start: {fileID: 3064402431573307649}
   middle: {fileID: 1406699715982874707}
   end: {fileID: 6689040600748822077}
@@ -191,8 +191,8 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb40f95042fd1a93a8e5b09c60a9f742, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   idleSprite: {fileID: -1305236715, guid: fd3ca509e45e2ca5291fe5bbf91cc6f8, type: 3}
   animationSprites:
   - {fileID: -1305236715, guid: fd3ca509e45e2ca5291fe5bbf91cc6f8, type: 3}
@@ -301,8 +301,8 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb40f95042fd1a93a8e5b09c60a9f742, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   idleSprite: {fileID: 0}
   animationSprites:
   - {fileID: -1660714098, guid: 69fae69c06bcbc48a8c6158c62c28d12, type: 3}
@@ -411,8 +411,8 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb40f95042fd1a93a8e5b09c60a9f742, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   idleSprite: {fileID: -713372246, guid: 32ab7a9dcf68566e6a25ee397c918c47, type: 3}
   animationSprites:
   - {fileID: -713372246, guid: 32ab7a9dcf68566e6a25ee397c918c47, type: 3}

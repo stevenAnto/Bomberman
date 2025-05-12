@@ -22,11 +22,6 @@ public class BomboController : MonoBehaviour
     public Tilemap destructibleTiles;
     public GameObject destructibleBlockPrefab;
 
-    AudioManager audioManager;
-    private void Awake()
-    {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-    }
 
     private void OnEnable()
     {
@@ -55,8 +50,6 @@ public class BomboController : MonoBehaviour
         GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
         bombsRemaining--;
 
-        audioManager.PlaySFX(audioManager.placeBomb);
-
         // Esperar unos segundos a que la bomba estalle
         yield return new WaitForSeconds(bombFuseTime);
 
@@ -73,7 +66,7 @@ public class BomboController : MonoBehaviour
         Explode(position, Vector2.left, explosionRadius);
         Explode(position, Vector2.right, explosionRadius);
 
-        audioManager.PlaySFX(audioManager.bombExplosion);
+        
 
         Destroy(bomb);
         bombsRemaining++;
@@ -124,7 +117,6 @@ public class BomboController : MonoBehaviour
     {
         explosionRadius = Mathf.Min(10, explosionRadius + 1);
     }
-
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Bomb"))

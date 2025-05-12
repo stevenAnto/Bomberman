@@ -391,6 +391,16 @@ MonoBehaviour:
   animationTime: 0.1666667
   loop: 1
   idle: 1
+--- !u!1 &219226728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3395616224664061374, guid: bf6f2b18a2d16f449871a97f81ddf989, type: 3}
+  m_PrefabInstance: {fileID: 118926030}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1839735485 &219226732 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 3395616224664061314, guid: bf6f2b18a2d16f449871a97f81ddf989, type: 3}
+  m_PrefabInstance: {fileID: 118926030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &412710265
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,6 +785,7 @@ MonoBehaviour:
   spriteRendererDown: {fileID: 212265531}
   spriteRendererLeft: {fileID: 1741761779}
   spriteRendererRight: {fileID: 412710268}
+  spriteRendererDeath: {fileID: 0}
 --- !u!114 &648376326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,6 +802,14 @@ MonoBehaviour:
   bombPrefab: {fileID: 7392538106316855837, guid: 1897aa9c381077be6a2c1a9e84b8ada4, type: 3}
   bombFuseTime: 3
   bombAmount: 5
+  explosionPrefab: {fileID: 53474665737650711, guid: 144d001d273fbff4eafafe5375439556, type: 3}
+  explosionLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  explosionDuration: 1
+  explosionRadius: 1
+  destructibleTiles: {fileID: 219226732}
+  destructibleBlockPrefab: {fileID: 219226728}
 --- !u!1 &1741761776
 GameObject:
   m_ObjectHideFlags: 0

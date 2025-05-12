@@ -15,33 +15,27 @@ public class PatronIA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.x != waypoints[currentWaypoint].position.x)
+        if (Vector2.Distance(transform.position, waypoints[currentWaypoint].position) > 0.05f)
         {
-            Debug.Log("Voltea");
-            transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypoint].position, 
-                                    speed * Time.deltaTime);    
+            transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypoint].position,
+                                        speed * Time.deltaTime);
         }
         else if(!isWaiting)
         {
+           
             StartCoroutine(Wait());
-            
         }
     }
 
     IEnumerator Wait()
     {
-       
         isWaiting = true;
         yield return new WaitForSeconds(waitTime);
-        currentWaypoint++;
-
-        if (currentWaypoint == waypoints.Length)
-        {
-            currentWaypoint = 0;
-        }
+        currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
+        Flip();
         isWaiting = false;
 
-        Flip();
+        
     }
 
     private void Flip()
@@ -53,6 +47,15 @@ public class PatronIA : MonoBehaviour
         else
         {
             transform.rotation = Quaternion.Euler(0f, 0f,0f); 
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+       
+        if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
+        {
+            Destroy(gameObject);
         }
     }
 }
