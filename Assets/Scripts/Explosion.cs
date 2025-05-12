@@ -10,9 +10,15 @@ public class Explosion : MonoBehaviour
 
     public void SetActiveRenderer(AnimatedSpritRendered renderer)
     {
+<<<<<<< HEAD:Assets/Scipts/Explosion.cs
         start.enabled = renderer == start;
         middle.enabled = renderer == middle;
         end.enabled = renderer == end;
+=======
+        start.enabled  = renderer == start;
+        middle.enabled = renderer == middle;
+        end.enabled    = renderer == end;
+>>>>>>> fcc2fa7a6232512468d941a4fe347c934edaebe3:Assets/Scripts/Explosion.cs
     }
 
     public void SetDirection(Vector2 direction)
