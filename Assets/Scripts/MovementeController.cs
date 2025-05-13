@@ -33,9 +33,11 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        
+
         // Inicializa con el sprite hacia abajo como activo por defecto
-        activeSpriteRenderer = spriteRendererDown;   
+        //* activeSpriteRenderer = spriteRendererDown;
+
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
     void Update()
     {
@@ -111,7 +113,6 @@ public class MovementController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
         if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
         {
             DeathSequence();
@@ -143,36 +144,8 @@ public class MovementController : MonoBehaviour
 
     private void OnDeathSequenceEnded()
     {
-        Debug.Log("Mensaje");
-       // gameObject.SetActive(false);
-        if (deathScreenUI != null)
-        {
-            TextMeshProUGUI textComponent = deathScreenUI.GetComponentInChildren<TextMeshProUGUI>();
-
-            if (textComponent != null)
-            {
-                if (gameObject.name == "Player")
-                {
-                    textComponent.text = "Jugador 1 ha muerto\n¡Jugador 2 gana!";
-                }
-                else if (gameObject.name == "Player_2")
-                {
-                    textComponent.text = "Jugador 2 ha muerto\n¡Jugador 1 gana!";
-                }
-            }
-
-            
-        }
-        deathScreenUI.SetActive(true);
-        StartCoroutine(WaitForEnterAndLoadScene());
-    }
-    private IEnumerator WaitForEnterAndLoadScene()
-    {
-       
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
-
-        
-        SceneManager.LoadScene("Level 3");
+        gameObject.SetActive(false);
+        GameManager.Instance.CheckWinState();
     }
 
 }

@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip placeBomb;
     public AudioClip bombExplosion;
     public AudioClip death;
+    public AudioClip itemGet;
+    public AudioClip allEnemiesDead;
 
     private void Start()
     {
