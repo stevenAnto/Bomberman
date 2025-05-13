@@ -26,7 +26,7 @@ public class MovementController : MonoBehaviour
     public AnimatedSpritRendered spriteRendererLeft;
     public AnimatedSpritRendered spriteRendererRight;
     public AnimatedSpritRendered spriteRendererDeath;
-    public AnimatedSpritRendered activeSpriteRenderer;
+    private AnimatedSpritRendered activeSpriteRenderer;
 
     AudioManager audioManager;
 
@@ -35,11 +35,8 @@ public class MovementController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         
         // Inicializa con el sprite hacia abajo como activo por defecto
-        //* activeSpriteRenderer = spriteRendererDown;
-
-        
+        activeSpriteRenderer = spriteRendererDown;   
     }
-
     void Update()
     {
         // Reset direction at the beginning of each frame
@@ -97,33 +94,14 @@ public class MovementController : MonoBehaviour
     private void SetDirection(Vector2 newDirection, AnimatedSpritRendered spriteRenderer)
     {
         direction = newDirection;
-        
-        // Solo actualizamos los sprites si tenemos un sprite renderer válido
-        if (spriteRenderer != null)
-        {
-            // Desactivamos todos los sprites
-            spriteRendererUp.enabled = false;
-            spriteRendererDown.enabled = false;
-            spriteRendererLeft.enabled = false;
-            spriteRendererRight.enabled = false;
-            
-            // Activamos solo el sprite correspondiente
-            spriteRenderer.enabled = true;
-            
-            // Actualizamos el sprite renderer activo
-            activeSpriteRenderer = spriteRenderer;
-        }
-        
-        // Actualizamos el estado idle del sprite renderer activo
-        if (activeSpriteRenderer != null)
-        {
-            activeSpriteRenderer.idle = direction == Vector2.zero;
-        }
-        
-        if (direction != Vector2.zero)
-        {
-            //* Debug.Log("Nueva dirección: " + direction);
-        }
+
+        spriteRendererUp.enabled = spriteRenderer == spriteRendererUp;
+        spriteRendererDown.enabled = spriteRenderer == spriteRendererDown;
+        spriteRendererLeft.enabled = spriteRenderer == spriteRendererLeft;
+        spriteRendererRight.enabled = spriteRenderer == spriteRendererRight;
+
+        activeSpriteRenderer = spriteRenderer;
+        activeSpriteRenderer.idle = direction == Vector2.zero;
     }
 
     public void IncreaseSpeed()
@@ -156,9 +134,7 @@ public class MovementController : MonoBehaviour
         spriteRendererDown.enabled = false;
         spriteRendererLeft.enabled = false;
         spriteRendererRight.enabled = false;
-       
-
-       
+        spriteRendererDeath.enabled = true;
 
         Invoke(nameof(OnDeathSequenceEnded), 1.25f);
 
@@ -190,9 +166,6 @@ public class MovementController : MonoBehaviour
         deathScreenUI.SetActive(true);
         StartCoroutine(WaitForEnterAndLoadScene());
     }
-
-
-
     private IEnumerator WaitForEnterAndLoadScene()
     {
        
