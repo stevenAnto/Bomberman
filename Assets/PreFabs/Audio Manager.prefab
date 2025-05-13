@@ -53,6 +53,7 @@ MonoBehaviour:
   bombExplosion: {fileID: 8300000, guid: ea00af5951431f8479af0e124b5284b0, type: 3}
   death: {fileID: 8300000, guid: b8110a0767f825842917f56662ec92d0, type: 3}
   itemGet: {fileID: 8300000, guid: 07ae1f5bd9661c8439b57eb00c8e7239, type: 3}
+  allEnemiesDead: {fileID: 8300000, guid: d1c369b08604c8948989aa40b0a78232, type: 3}
 --- !u!1 &2420284142630128084
 GameObject:
   m_ObjectHideFlags: 0
