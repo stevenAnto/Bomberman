@@ -49,7 +49,6 @@ public class PatronIA : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, 0f,0f); 
         }
     }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
        
