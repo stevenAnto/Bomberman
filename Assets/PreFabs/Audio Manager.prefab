@@ -48,10 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1500410530277378122}
   SFXSource: {fileID: 6070757606710288511}
-  backgroundScene3: {fileID: 8300000, guid: 8b3b5ef77babc494391cd4de0a922af2, type: 3}
+  backgroundScene3: {fileID: 8300000, guid: f24b0d29b92b0284fa4f6815649aa53b, type: 3}
   placeBomb: {fileID: 8300000, guid: 38d5bbb12f745014191376c8c2e8a0b3, type: 3}
   bombExplosion: {fileID: 8300000, guid: ea00af5951431f8479af0e124b5284b0, type: 3}
   death: {fileID: 8300000, guid: b8110a0767f825842917f56662ec92d0, type: 3}
+  itemGet: {fileID: 8300000, guid: 07ae1f5bd9661c8439b57eb00c8e7239, type: 3}
 --- !u!1 &2420284142630128084
 GameObject:
   m_ObjectHideFlags: 0

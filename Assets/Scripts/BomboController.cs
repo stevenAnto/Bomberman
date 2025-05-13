@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,6 +58,12 @@ public class BomboController : MonoBehaviour
 
         audioManager.PlaySFX(audioManager.placeBomb);
 
+        for (int i = 0; i < 6; i++)
+        {
+            yield return new WaitForSeconds(0.10f);
+            bomb.transform.Rotate(0f, 0f, 60f);
+        }
+
         // Esperar unos segundos a que la bomba estalle
         yield return new WaitForSeconds(bombFuseTime);
 
@@ -64,7 +71,7 @@ public class BomboController : MonoBehaviour
         position.x = Mathf.Round(position.x);
         position.y = Mathf.Round(position.y);
 
-        Explosion explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
+                Explosion explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
         explosion.SetActiveRenderer(explosion.start);
         explosion.DestroyAfter(explosionDuration);
 
@@ -114,15 +121,27 @@ public class BomboController : MonoBehaviour
         }
     }
 
+    const int MAXIMUM_ITEM_VALUE = 15;
+
     public void AddExtraBomb()
     {
-        bombAmount     = Mathf.Min(10, bombAmount + 1);
-        bombsRemaining = Mathf.Min(10, bombsRemaining + 1);
+        bombAmount     = Mathf.Min(MAXIMUM_ITEM_VALUE, bombAmount + 1);
+        bombsRemaining = Mathf.Min(MAXIMUM_ITEM_VALUE, bombsRemaining + 1);
     }
 
     public void IncreaseExplosionRadius()
     {
-        explosionRadius = Mathf.Min(10, explosionRadius + 1);
+        explosionRadius = Mathf.Min(MAXIMUM_ITEM_VALUE, explosionRadius + 1);
+    }
+
+    public void AddBossItems()
+    {
+        for (int i = 0; i < MAXIMUM_ITEM_VALUE + 5; i++)
+        {
+            AddExtraBomb();
+            IncreaseExplosionRadius();
+        }
+        bombFuseTime = 1f;
     }
 
     private void OnTriggerExit2D(Collider2D other)
