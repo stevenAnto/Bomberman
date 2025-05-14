@@ -4,21 +4,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovementController : MonoBehaviour
 {
     public new Rigidbody2D rigidbody { get; private set; }
 
     private Vector2 direction = Vector2.zero;
-    public float speed        = 5f;
+    public float speed = 5f;
     public GameObject deathScreenUI;
 
     [Header("Input")]
-    public KeyCode inputUp    = KeyCode.W;
-    public KeyCode inputDown  = KeyCode.S;
+    public KeyCode inputUp = KeyCode.W;
+    public KeyCode inputDown = KeyCode.S;
     public KeyCode inputRight = KeyCode.D;
-    public KeyCode inputLeft  = KeyCode.A;
+    public KeyCode inputLeft = KeyCode.A;
 
     [Header("Sprites")]
     public AnimatedSpritRendered spriteRendererUp;
@@ -26,7 +25,7 @@ public class MovementController : MonoBehaviour
     public AnimatedSpritRendered spriteRendererLeft;
     public AnimatedSpritRendered spriteRendererRight;
     public AnimatedSpritRendered spriteRendererDeath;
-    private AnimatedSpritRendered activeSpriteRenderer;
+    public AnimatedSpritRendered activeSpriteRenderer;
 
     AudioManager audioManager;
 
@@ -39,6 +38,7 @@ public class MovementController : MonoBehaviour
 
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
+
     void Update()
     {
         // Reset direction at the beginning of each frame
@@ -97,13 +97,32 @@ public class MovementController : MonoBehaviour
     {
         direction = newDirection;
 
-        spriteRendererUp.enabled = spriteRenderer == spriteRendererUp;
-        spriteRendererDown.enabled = spriteRenderer == spriteRendererDown;
-        spriteRendererLeft.enabled = spriteRenderer == spriteRendererLeft;
-        spriteRendererRight.enabled = spriteRenderer == spriteRendererRight;
+        // Solo actualizamos los sprites si tenemos un sprite renderer válido
+        if (spriteRenderer != null)
+        {
+            // Desactivamos todos los sprites
+            spriteRendererUp.enabled = false;
+            spriteRendererDown.enabled = false;
+            spriteRendererLeft.enabled = false;
+            spriteRendererRight.enabled = false;
 
-        activeSpriteRenderer = spriteRenderer;
-        activeSpriteRenderer.idle = direction == Vector2.zero;
+            // Activamos solo el sprite correspondiente
+            spriteRenderer.enabled = true;
+
+            // Actualizamos el sprite renderer activo
+            activeSpriteRenderer = spriteRenderer;
+        }
+
+        // Actualizamos el estado idle del sprite renderer activo
+        if (activeSpriteRenderer != null)
+        {
+            activeSpriteRenderer.idle = direction == Vector2.zero;
+        }
+
+        if (direction != Vector2.zero)
+        {
+            //* Debug.Log("Nueva dirección: " + direction);
+        }
     }
 
     public void IncreaseSpeed()
@@ -118,6 +137,7 @@ public class MovementController : MonoBehaviour
             DeathSequence();
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemigo"))
@@ -137,15 +157,52 @@ public class MovementController : MonoBehaviour
         spriteRendererRight.enabled = false;
         spriteRendererDeath.enabled = true;
 
+        audioManager.PlaySFX(audioManager.death);
+
         Invoke(nameof(OnDeathSequenceEnded), 1.25f);
-
-
     }
 
     private void OnDeathSequenceEnded()
     {
-        gameObject.SetActive(false);
-        GameManager.Instance.CheckWinState();
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        if (currentScene == "Level 3")
+        {
+            gameObject.SetActive(false);
+            GameManager.Instance.CheckWinState();
+        }
+        else
+        {
+            if (deathScreenUI != null)
+            {
+                TextMeshProUGUI textComponent = deathScreenUI.GetComponentInChildren<TextMeshProUGUI>();
+
+                if (textComponent != null)
+                {
+                    if (gameObject.name == "Player")
+                    {
+                        textComponent.text = "Jugador 1 ha muerto\n¡Jugador 2 gana!";
+                    }
+                    else if (gameObject.name == "Player_2")
+                    {
+                        textComponent.text = "Jugador 2 ha muerto\n¡Jugador 1 gana!";
+                    }
+                }
+            }
+
+
+            deathScreenUI.SetActive(true);
+            StartCoroutine(WaitForEnterAndLoadScene());
+        }
+    }
+
+    private IEnumerator WaitForEnterAndLoadScene()
+    {
+
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+
+
+        SceneManager.LoadScene("Level 3");
     }
 
 }

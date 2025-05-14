@@ -1315,6 +1315,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8869320898348098599, guid: 1d84ff5c5d91c534eb357b70fac053e8, type: 3}
+      propertyPath: explosionPrefab
+      value: 
+      objectReference: {fileID: 2694351145830751528, guid: 144d001d273fbff4eafafe5375439556, type: 3}
+    - target: {fileID: 8869320898348098599, guid: 1d84ff5c5d91c534eb357b70fac053e8, type: 3}
       propertyPath: explosionRadius
       value: 10
       objectReference: {fileID: 0}
@@ -1411,6 +1415,10 @@ PrefabInstance:
       propertyPath: bombAmount
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8869320898348098599, guid: 1d84ff5c5d91c534eb357b70fac053e8, type: 3}
+      propertyPath: explosionPrefab
+      value: 
+      objectReference: {fileID: 2694351145830751528, guid: 144d001d273fbff4eafafe5375439556, type: 3}
     - target: {fileID: 8869320898348098599, guid: 1d84ff5c5d91c534eb357b70fac053e8, type: 3}
       propertyPath: explosionRadius
       value: 5

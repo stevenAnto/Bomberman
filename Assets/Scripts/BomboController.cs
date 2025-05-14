@@ -50,7 +50,7 @@ public class BomboController : MonoBehaviour
         GameObject bomb = Instantiate(bombPrefab, position, Quaternion.identity);
         bombsRemaining--;
 
-        audioManager.PlaySFX(audioManager.placeBomb);
+        //audioManager.PlaySFX(audioManager.placeBomb);
 
         for (int i = 0; i < 6; i++)
         {
@@ -74,7 +74,7 @@ public class BomboController : MonoBehaviour
         Explode(position, Vector2.left, explosionRadius);
         Explode(position, Vector2.right, explosionRadius);
 
-        audioManager.PlaySFX(audioManager.bombExplosion);
+        //audioManager.PlaySFX(audioManager.bombExplosion);
 
         Destroy(bomb);
         bombsRemaining++;

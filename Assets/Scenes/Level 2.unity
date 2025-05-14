@@ -383,10 +383,14 @@ PrefabInstance:
       propertyPath: deathScreenUI
       value: 
       objectReference: {fileID: 608576848}
+    - target: {fileID: 5024743081275493479, guid: 1d84ff5c5d91c534eb357b70fac053e8, type: 3}
+      propertyPath: activeSpriteRenderer
+      value: 
+      objectReference: {fileID: 1224497325}
     - target: {fileID: 8869320898348098599, guid: 1d84ff5c5d91c534eb357b70fac053e8, type: 3}
       propertyPath: explosionPrefab
       value: 
-      objectReference: {fileID: 2694351145830751528, guid: 7d7e9c7ce1308484e863a8b4489e090f, type: 3}
+      objectReference: {fileID: 2694351145830751528, guid: 144d001d273fbff4eafafe5375439556, type: 3}
     - target: {fileID: 8869320898348098599, guid: 1d84ff5c5d91c534eb357b70fac053e8, type: 3}
       propertyPath: explosionLayerMask.m_Bits
       value: 256
@@ -1900,6 +1904,17 @@ MonoBehaviour:
   - {fileID: 1046296453}
   waitTime: 2
   speed: 2.5
+--- !u!114 &1224497325 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5436524014763542035, guid: 1d84ff5c5d91c534eb357b70fac053e8, type: 3}
+  m_PrefabInstance: {fileID: 435965417}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb40f95042fd1a93a8e5b09c60a9f742, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1261726493 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2946989359822449562, guid: f599d76226aa16e4b87e507fa32dd4b8, type: 3}
@@ -2115,6 +2130,7 @@ MonoBehaviour:
   spriteRendererLeft: {fileID: 1598926680}
   spriteRendererRight: {fileID: 174930264}
   spriteRendererDeath: {fileID: 72018176}
+  activeSpriteRenderer: {fileID: 0}
 --- !u!114 &1566871667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2131,7 +2147,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 7392538106316855837, guid: 1897aa9c381077be6a2c1a9e84b8ada4, type: 3}
   bombFuseTime: 3
   bombAmount: 1
-  explosionPrefab: {fileID: 2694351145830751528, guid: 7d7e9c7ce1308484e863a8b4489e090f, type: 3}
+  explosionPrefab: {fileID: 2694351145830751528, guid: 144d001d273fbff4eafafe5375439556, type: 3}
   explosionLayerMask:
     serializedVersion: 2
     m_Bits: 256
